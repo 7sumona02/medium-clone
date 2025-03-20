@@ -11,7 +11,7 @@ export default function Footer() {
             target='_blank'
             rel='noopener noreferrer'
             className='text-primary transition-colors hover:text-accent-foreground'
-            href='https://www.hamedbahram.io/'
+            href='https://portfolio.sumona.tech/'
           >
             Studio H
           </Link>
