@@ -1,7 +1,13 @@
 import Post from '@/components/post'
 
-export default function PostPage({ params }: { params: { slug: string } }) {
-  const { slug } = params
+interface PageProps {
+  params: Promise<{
+    slug: string
+  }>
+}
+
+export default async function PostPage({ params }: PageProps) {
+  const { slug } = await params
 
   return (
     <div className='flex justify-center'>

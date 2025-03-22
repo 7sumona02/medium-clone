@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 // import { useDebouncedCallback } from 'use-debounce'
 
 import { cn } from '@/lib/utils'
@@ -12,7 +12,6 @@ import {
   EditorCommandItem,
   EditorCommandList,
   EditorContent,
-  type EditorInstance,
   EditorRoot,
   handleCommandNavigation,
   handleImageDrop,
@@ -32,8 +31,6 @@ import { ColorSelector } from '@/components/editor/selectors/color-selector'
 
 import { Separator } from '@/components/ui/separator'
 import { slashCommand, suggestionItems } from './slash-command'
-
-const hljs = require('highlight.js')
 
 const extensions = [...defaultExtensions, slashCommand]
 
@@ -59,55 +56,16 @@ export default function Editor({
   setContent
 }: EditorProps) {
   // const [initialContent, setInitialContent] = useState<null | JSONContent>(null)
-  const [saveStatus, setSaveStatus] = useState('Saved')
-  const [charsCount, setCharsCount] = useState()
+  const [, setSaveStatus] = useState('Saved')
 
   const [openNode, setOpenNode] = useState(false)
   const [openColor, setOpenColor] = useState(false)
   const [openLink, setOpenLink] = useState(false)
   const [openAI, setOpenAI] = useState(false)
 
-  //Apply Codeblock Highlighting on the HTML from editor.getHTML()
-  const highlightCodeblocks = (content: string) => {
-    const doc = new DOMParser().parseFromString(content, 'text/html')
-    doc.querySelectorAll('pre code').forEach(el => {
-      // @ts-ignore
-      // https://highlightjs.readthedocs.io/en/latest/api.html?highlight=highlightElement#highlightelement
-      hljs.highlightElement(el)
-    })
-    return new XMLSerializer().serializeToString(doc)
-  }
-
   const initialContent = post?.content
     ? JSON.parse(post.content)
     : defaultEditorContent
-
-  // const debouncedUpdates = useDebouncedCallback(
-  //   async (editor: EditorInstance) => {
-  //     const json = editor.getJSON()
-  //     setCharsCount(editor.storage.characterCount.words())
-  //     window.localStorage.setItem(
-  //       `${lesson.id}-html-content`,
-  //       highlightCodeblocks(editor.getHTML())
-  //     )
-  //     window.localStorage.setItem(
-  //       `${lesson.id}-novel-content`,
-  //       JSON.stringify(json)
-  //     )
-  //     window.localStorage.setItem(
-  //       `${lesson.id}-markdown`,
-  //       editor.storage.markdown.getMarkdown()
-  //     )
-  //     setSaveStatus('Saved')
-  //   },
-  //   500
-  // )
-
-  // useEffect(() => {
-  //   const content = window.localStorage.getItem(`${lesson.id}-novel-content`)
-  //   if (content) setInitialContent(JSON.parse(content))
-  //   else setInitialContent(defaultEditorContent)
-  // }, [])
 
   if (!initialContent) return null
 

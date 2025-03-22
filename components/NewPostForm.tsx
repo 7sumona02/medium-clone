@@ -83,7 +83,7 @@ export default function NewPostForm() {
 
       router.push(`/posts/${postSlug}`)
       toast.success('Post created!')
-    } catch (error) {
+    } catch {
       toast.error('Failed to create post')
     }
   }

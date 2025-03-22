@@ -1,5 +1,5 @@
 
-import { Command, createSuggestionItems, renderItems, Youtube } from 'novel'
+import { Command, createSuggestionItems, renderItems } from 'novel'
 import { uploadFn } from './image-upload'
 import { CheckSquare, Code, Heading1, Heading2, Heading3, ImageIcon, List, ListOrdered, Text, TextQuote, Twitter, YoutubeIcon } from 'lucide-react'
 
