@@ -25,6 +25,10 @@ export default function Header() {
 
         <div className='flex items-center justify-between gap-6'>
           <ThemeToggle />
+          
+          <Button size='sm' variant='secondary' asChild>
+            <Link href='/write'>Write</Link>
+          </Button>
 
           <SignedOut>
             <SignInButton mode='modal'>
